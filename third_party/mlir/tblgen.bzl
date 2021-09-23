@@ -153,6 +153,7 @@ def _gentbl_rule_impl(ctx):
         inputs = trans_srcs,
         executable = ctx.executable.tblgen,
         arguments = [args],
+        use_default_shell_env=True,
     )
 
     return [DefaultInfo()]
