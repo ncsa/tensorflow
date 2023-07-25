@@ -254,6 +254,8 @@ def _py_tmpl_dict(d):
 def _tensorrt_configure_impl(repository_ctx):
     """Implementation of the tensorrt_configure repository rule."""
 
+    fail("TensorRT configure implementation is being executed!")
+
     if get_host_environ(repository_ctx, _TF_TENSORRT_CONFIG_REPO) != None:
         # Forward to the pre-configured remote repository.
         remote_config_repo = repository_ctx.os.environ[_TF_TENSORRT_CONFIG_REPO]
