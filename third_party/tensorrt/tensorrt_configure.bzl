@@ -44,7 +44,9 @@ _TF_TENSORRT_HEADERS_V8 = [
     "NvInferPlugin.h",
     "NvInferVersion.h",
     "NvInferRuntime.h",
+    "NvInferRuntimeBase.h",
     "NvInferRuntimeCommon.h",
+    "NvInferRuntimePlugin.h",
     "NvInferPluginUtils.h",
 ]
 
@@ -254,8 +256,6 @@ def _py_tmpl_dict(d):
 def _tensorrt_configure_impl(repository_ctx):
     """Implementation of the tensorrt_configure repository rule."""
 
-    fail("TensorRT configure implementation is being executed!")
-
     if get_host_environ(repository_ctx, _TF_TENSORRT_CONFIG_REPO) != None:
         # Forward to the pre-configured remote repository.
         remote_config_repo = repository_ctx.os.environ[_TF_TENSORRT_CONFIG_REPO]
@@ -280,6 +280,7 @@ def _tensorrt_configure_impl(repository_ctx):
             config_repo_label(remote_config_repo, ":LICENSE"),
             {},
         )
+
         return
 
     if not enable_tensorrt(repository_ctx):
